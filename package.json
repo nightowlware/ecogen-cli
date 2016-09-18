@@ -1,0 +1,28 @@
+{
+  "name": "ecogen-cli",
+  "version": "0.1.0",
+  "description": "Ecogen cli tool",
+  "main": "main.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nightowlware/ecogen-cli.git"
+  },
+  "keywords": [
+    "ecogen",
+    "template",
+    "transpiler",
+    "compiler",
+    "generator",
+    "meta-programming",
+    "macro"
+  ],
+  "author": "NightOwl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nightowlware/ecogen-cli/issues"
+  },
+  "homepage": "https://github.com/nightowlware/ecogen-cli#readme"
+}

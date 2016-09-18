@@ -1,0 +1,4 @@
+syntax: glob
+*.swp
+*.tags*
+node_modules
