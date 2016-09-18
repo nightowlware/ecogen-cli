@@ -19,7 +19,6 @@ const outputCode = ecogen.run(fs.readFileSync(inputFile, {encoding: "utf-8"}));
 
 if (outputFile) {
   fs.writeFileSync(outputFile, outputCode);
-  fs.closeSync(outputFile);
 } else {
   fs.writeSync(1, outputCode);
   fs.fsync(1, () => { process.exit(0); });
