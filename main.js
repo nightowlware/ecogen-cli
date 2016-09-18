@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+"use strict";
+
 let fs = require('fs');
 let ecogen = require('ecogen');
 let argv = require('yargs')
