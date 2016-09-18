@@ -1,2 +1,4 @@
 # ecogen-cli
-Ecogen cli tool
+[Ecogen](https://github.com/nightowlware/ecogen) cli tool
+
+
