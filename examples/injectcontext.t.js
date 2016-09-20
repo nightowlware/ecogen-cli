@@ -1,4 +1,4 @@
-~ // This file must be used with --context test.json
+~ // This file must be run with "--context test.json"
 
 a is #|a|#
 b is #|b|#

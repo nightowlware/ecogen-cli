@@ -8,8 +8,12 @@ const argv = require('yargs')
   .usage('Usage: ecogen <command> [options]')
   .example('ecogen <input_file> [output_file]', 'input_file must be valid TildeJS code; if output_file is omitted, output goes to stdin.')
   .demand(1, 2)
+  .nargs('c', 1)
+  .describe('c', 'Provide eval context as a file: if a .json file is provided, then its data is injected into the eval scope. See examples/injectcontext.t.js')
+  // .describe('c', 'Provide eval context, as a file: if a .json file is provided, then its data is injected as an object into the eval scope. If a .js file is provided, then it is "require()ed" into the eval scope as an object with the same name as the base file name (excluding the .js extension)')
   .help('h')
   .version()
+  .alias('c', 'context')
   .alias('h', 'help')
   .alias('v', 'version')
   .argv;
@@ -18,7 +22,17 @@ const argv = require('yargs')
 
 const inputFile = argv._[0];
 const outputFile = argv._[1];
-const outputCode = ecogen.run(fs.readFileSync(inputFile, {encoding: "utf-8"}));
+
+let evalContext = {};
+if (argv.c) {
+  const contextFile = argv.c;
+  if (contextFile.endsWith('.json')) {
+    evalContext = JSON.parse(fs.readFileSync(contextFile));
+    // console.log("evalContext: ", evalContext);
+  }
+}
+
+const outputCode = ecogen.run(fs.readFileSync(inputFile, {encoding: "utf-8"}), evalContext);
 
 if (outputFile) {
   fs.writeFileSync(outputFile, outputCode);
