@@ -6,7 +6,9 @@
   "bin": {
     "ecogen": "main.js"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "node main.js examples/quine.t.js && node main.js examples/minimal.t.js && node main.js examples/success.t.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nightowlware/ecogen-cli.git"
