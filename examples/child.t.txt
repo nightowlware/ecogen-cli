@@ -1,0 +1,4 @@
+~
+~ const thingPrefix = "PREFIX --";
+~
+#|thingPrefix|# Im the thing dude!

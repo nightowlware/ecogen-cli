@@ -18,16 +18,21 @@ const argv = require('yargs')
   .alias('v', 'version')
   .argv;
 
-
-
 const inputFile = argv._[0];
 const outputFile = argv._[1];
 
-let evalContext = {};
+function createDefaultContext() {
+  return {
+    require,
+    ecogenImport: filename => ecogen.run(fs.readFileSync(filename, {encoding: "utf-8"}), {})
+  };
+}
+
+let evalContext = createDefaultContext();
 if (argv.c) {
   const contextFile = argv.c;
   if (contextFile.endsWith('.json')) {
-    evalContext = JSON.parse(fs.readFileSync(contextFile));
+    evalContext = Object.assign(evalContext, JSON.parse(fs.readFileSync(contextFile)));
     // console.log("evalContext: ", evalContext);
   }
 }
