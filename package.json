@@ -7,7 +7,7 @@
     "ecogen": "main.js"
   },
   "scripts": {
-    "test": "node main.js examples/quine.t.js && node main.js examples/minimal.t.js && node main.js examples/success.t.js"
+    "test": "node main.js examples/injectcontext.t.js -c examples/test.json && node main.js examples/parent.t.js && node main.js examples/quine.t.js && node main.js examples/minimal.t.js && node main.js examples/success.t.js"
   },
   "repository": {
     "type": "git",

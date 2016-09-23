@@ -1,2 +1,2 @@
 console.log("I am the parent!");
-const thingStr = `#| ecogenImport('child.t.txt') |#`
+const thingStr = `#| ecogenRun('examples/child.t.txt').trim() |#`

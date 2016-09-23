@@ -21,10 +21,15 @@ const argv = require('yargs')
 const inputFile = argv._[0];
 const outputFile = argv._[1];
 
+
 function createDefaultContext() {
+  function ecogenRun(filename, inputContext) {
+    return ecogen.run(fs.readFileSync(filename, {encoding: "utf-8"}), Object.assign(createDefaultContext(), inputContext));
+  }
+
   return {
     require,
-    ecogenImport: filename => ecogen.run(fs.readFileSync(filename, {encoding: "utf-8"}), {})
+    ecogenRun,
   };
 }
 
