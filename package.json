@@ -1,6 +1,6 @@
 {
   "name": "ecogen-cli",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Ecogen cli tool",
   "preferGlobal": true,
   "bin": {
