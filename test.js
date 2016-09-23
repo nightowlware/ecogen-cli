@@ -9,5 +9,6 @@ const files = [
               ];
 
 for (file of files) {
+  console.log('--------------------------------');
   run(`node main.js ${file}`, {stdio: 'inherit'});
 }
