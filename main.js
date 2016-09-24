@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
+const process = require('process');
 const chalk = require('chalk');
 const fs = require('fs');
 const ecogen = require('ecogen');
@@ -18,31 +19,29 @@ const argv = require('yargs')
   .alias('v', 'version')
   .argv;
 
+
+function abort(msg) {
+  console.error(chalk.red(msg));
+  console.error(chalk.red('Aborting.'));
+  process.exit(-1);
+}
+
+
 const inputFile = argv._[0];
 const outputFile = argv._[1];
 
+let userEvalContext = {};
 
-function createDefaultContext() {
-  function ecogenRun(filename, inputContext) {
-    return ecogen.run(fs.readFileSync(filename, {encoding: "utf-8"}), Object.assign(createDefaultContext(), inputContext));
-  }
-
-  return {
-    require,
-    ecogenRun,
-  };
-}
-
-let evalContext = createDefaultContext();
 if (argv.c) {
   const contextFile = argv.c;
-  if (contextFile.endsWith('.json')) {
-    evalContext = Object.assign(evalContext, JSON.parse(fs.readFileSync(contextFile)));
-    // console.log("evalContext: ", evalContext);
+  if (typeof contextFile === 'string' && contextFile.endsWith('.json')) {
+    userEvalContext = Object.assign(userEvalContext, JSON.parse(fs.readFileSync(contextFile)));
+  } else {
+    abort('You must supply a .json file for data injection.');
   }
 }
 
-const outputCode = ecogen.run(fs.readFileSync(inputFile, {encoding: "utf-8"}), evalContext);
+const outputCode = ecogen.run(fs.readFileSync(inputFile, {encoding: "utf-8"}), userEvalContext);
 
 if (outputFile) {
   fs.writeFileSync(outputFile, outputCode);
