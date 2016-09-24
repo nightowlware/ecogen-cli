@@ -27,21 +27,18 @@ function abort(msg) {
 }
 
 
-const inputFile = argv._[0];
+const srcFile = argv._[0];
 const outputFile = argv._[1];
-
-let userEvalContext = {};
+let envFile = null;
 
 if (argv.c) {
-  const contextFile = argv.c;
-  if (typeof contextFile === 'string' && contextFile.endsWith('.json')) {
-    userEvalContext = Object.assign(userEvalContext, JSON.parse(fs.readFileSync(contextFile)));
-  } else {
+  envFile = argv.c;
+  if (!(typeof envFile === 'string' && envFile.endsWith('.json'))) {
     abort('You must supply a .json file for data injection.');
   }
 }
 
-const outputCode = ecogen.run(fs.readFileSync(inputFile, {encoding: "utf-8"}), userEvalContext);
+const outputCode = ecogen.runFile(srcFile, envFile);
 
 if (outputFile) {
   fs.writeFileSync(outputFile, outputCode);
