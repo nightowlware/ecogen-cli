@@ -5,7 +5,8 @@ const files = [
                 "examples/parent.t.js",
                 "examples/quine.t.js",
                 "examples/minimal.t.js",
-                "examples/success.t.js"
+                "examples/success.t.js",
+                "examples/block.txt",
               ];
 
 for (file of files) {

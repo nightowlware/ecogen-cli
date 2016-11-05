@@ -1,0 +1,7 @@
+~---------------------
+const x = 8;
+for (let i = 0; i < x; i++) {
+  const k = x - i;
+~---------------------
+  The number k is equal to: #|k|#
+~ }
