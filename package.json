@@ -1,6 +1,6 @@
 {
   "name": "ecogen-cli",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Ecogen cli tool",
   "preferGlobal": true,
   "bin": {
@@ -30,7 +30,7 @@
   "homepage": "https://github.com/nightowlware/ecogen-cli#readme",
   "dependencies": {
     "chalk": "^1.1.3",
-    "ecogen": "^0.7.0",
+    "ecogen": "^0.8.0",
     "yargs": "^5.0.0"
   }
 }
